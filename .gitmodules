@@ -1,0 +1,3 @@
+[submodule "management-system"]
+	path = management-system
+	url = https://github.com/rosita-montoini/management-system.git
