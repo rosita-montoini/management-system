@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-const port = process.env.PORT;
+// const port = process.env.PORT;
 
 async function start() {
     try {
@@ -26,7 +26,8 @@ async function start() {
             useCreateIndex: true,
             useUnifiedTopology: true
         });
-        app.listen(port, () => {
+        app.listen(process.env.PORT || 5000, () => {
+            const port = server.address().port;
             console.log(`Server is running on port ${port}`);
         })
     } catch (err) {
