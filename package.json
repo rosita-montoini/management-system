@@ -2,10 +2,10 @@
   "name": "management-system",
   "version": "1.0.0",
   "description": "Management system",
-  "main": "app.mjs",
+  "main": "script.mjs",
   "scripts": {
-    "start": "node app.mjs",
-    "server": "nodemon app.mjs",
+    "start": "node script.mjs",
+    "server": "nodemon script.mjs",
     "client": "npm run start --prefix client",
     "client:install": "npm install --prefix client",
     "client:build": "npm run build --prefix client",
