@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-//const port = process.env.PORT || 8000;
+const port = process.env.PORT;
 
 async function start() {
     try {
@@ -26,8 +26,8 @@ async function start() {
             useCreateIndex: true,
             useUnifiedTopology: true
         });
-        app.listen(process.env.PORT || 3000, () => {
-            console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+        app.listen(port, () => {
+            console.log(`Server is running on port ${port}`);
         })
     } catch (err) {
         console.log('Something went wrong', err.message);
