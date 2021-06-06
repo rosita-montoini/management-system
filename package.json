@@ -2,13 +2,13 @@
   "name": "managementsystemapp",
   "version": "1.0.0",
   "description": "Management system",
-  "main": "app.mjs",
+  "main": "app.js",
   "engines": {
     "node": "12.11.1"
   },
   "scripts": {
-    "start": "node app.mjs",
-    "server": "nodemon app.mjs",
+    "start": "node app.js",
+    "server": "nodemon app.js",
     "client": "npm run start --prefix client",
     "client:install": "npm install --prefix client",
     "client:build": "npm run build --prefix client",

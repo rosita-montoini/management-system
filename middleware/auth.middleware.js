@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken';
-import { keys } from '../index.mjs';
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
-export const authMiddleware = (req, res, next) => {
+module.exports = (req, res, next) => {
     if (req.method === 'OPTIONS') {
         return next();
     }
@@ -15,7 +15,7 @@ export const authMiddleware = (req, res, next) => {
             });
         }
 
-       const decoded = jwt.verify(token, keys.JWT_SECRET);
+       const decoded = jwt.verify(token, config.get('JWT_SECRET'));
        req.user = decoded;
        next();
     } catch (err) {

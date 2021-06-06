@@ -1,6 +1,6 @@
-import { keys } from '../index.mjs';
+const config = require('config');
 
-export const regEmail = email => {
+module.exports = email => {
     return {
         from: 'Management System <managsystem07@gmail.com>',
         to: email, 
@@ -9,7 +9,7 @@ export const regEmail = email => {
             <h1>Wellcome to Management System Application</h1>
             <p>You have successfully created your account with email - ${email}</p>
             <hr />
-            <a href="${keys.HOST_URL}">Management System</a>
+            <a href="${config.get('HOST_URL')}">Management System</a>
         `
     }
 };

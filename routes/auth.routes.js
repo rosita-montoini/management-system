@@ -1,11 +1,11 @@
-import express from 'express';
-import bcrypt from 'bcryptjs';
-import validator from 'express-validator';
-import jwt from 'jsonwebtoken';
-import User from '../models/User.mjs';
-import nodemailer from 'nodemailer';
-import { keys } from '../index.mjs';
-import { regEmail } from '../email/registration.mjs';
+const {Router} = require('express');
+const bcrypt = require('bcryptjs');
+const validator = require('express-validator');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+const nodemailer = require('nodemailer');
+const regEmail = require('../email/registration');
+const config = require('config');
 
 let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -17,7 +17,7 @@ let transporter = nodemailer.createTransport({
     },
 });
 
-const router = express.Router();
+const router = Router();
 const {check, validationResult} = validator;
 
 router.post(
@@ -110,7 +110,7 @@ router.post(
             });
         }
 
-        const token = jwt.sign({ userId: user.id }, keys.JWT_SECRET, { expiresIn: '1h'});
+        const token = jwt.sign({ userId: user.id }, config.get('JWT_SECRET'), { expiresIn: '1h'});
         res.json({ token, userId: user.id });
     } catch (err) {
         res.status(500).json({
@@ -119,4 +119,4 @@ router.post(
     }
 });
 
-export default router;
+module.exports = router;

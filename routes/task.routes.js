@@ -1,8 +1,8 @@
-import express from 'express';
-import Task from '../models/Task.mjs';
-import { authMiddleware } from '../middleware/auth.middleware.mjs';
+const {Router} = require('express');
+const Task = require('../models/Task');
+const authMiddleware = require('../middleware/auth.middleware');
 
-const router = express.Router();
+const router = Router();
 
 router.post('/add', authMiddleware, async (req, res) => {
     const {title, description, priority, dueDate} = req.body;
@@ -94,4 +94,4 @@ router.post('/edit/isDone', authMiddleware, async (req, res) => {
     }
 });
 
-export default router;
+module.exports = router;

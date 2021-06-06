@@ -1,15 +1,13 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import { keys } from './index.mjs';
-import authRouter from './routes/auth.routes.mjs';
-import taskRouter from './routes/task.routes.mjs';
-import path from 'path';
+const express = require('express');
+const mongoose = require('mongoose');
+const config = require('config');
+const path = require('path');
 
 const app = express();
 
 app.use(express.json({ exteded: true }));
-app.use('/auth', authRouter);
-app.use('/task', taskRouter);
+app.use('/auth', require('./routes/auth.routes'));
+app.use('/task', require('./routes/task.routes'));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, './client/build')));
@@ -19,11 +17,11 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-const port = process.env.PORT || ":";
+const port = process.env.PORT || 5000;
 
 async function start() {
     try {
-        await mongoose.connect(keys.MONGO_URL, {
+        await mongoose.connect(config.get('MONGO_URL'), {
             useNewUrlParser: true,
             useCreateIndex: true,
             useUnifiedTopology: true
