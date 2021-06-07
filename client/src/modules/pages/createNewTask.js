@@ -1,4 +1,4 @@
-import React, { useState, useContext, useHistory } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     Grid,
     makeStyles,
@@ -10,6 +10,7 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import { useHttp } from '../../hooks/useHttp';
 import { AuthContext } from '../../context/authContext';
+import { useHistory } from 'react-router-dom';
 
 const NUMBERS_REG = /^[1-9]\d*$/;
 
