@@ -1,10 +1,10 @@
 const {Router} = require('express');
 const Task = require('../models/Task');
-//const authMiddleware = require('../middleware/auth.middleware');
+const authMiddleware = require('../middleware/auth.middleware');
 
 const router = Router();
 
-router.post('/add', async (req, res) => {
+router.post('/add', authMiddleware, async (req, res) => {
     const {title, description, priority, dueDate} = req.body;
     const task = new Task({
         title,
@@ -29,7 +29,7 @@ router.post('/add', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
     try {
         const tasks = await Task.find({ ownerId: req.user.userId});
         res.json(tasks);
@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', authMiddleware, async (req, res) => {
     try {
         const task = await Task.findById(req.params.id);
         res.json(task);
@@ -51,7 +51,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/remove', async (req, res) => {
+router.post('/remove', authMiddleware, async (req, res) => {
     try {
         await Task.deleteOne({ _id: req.body.id });
         res.status(200).json({
@@ -64,7 +64,7 @@ router.post('/remove', async (req, res) => {
     }
 });
 
-router.post('/edit', async (req, res) => {
+router.post('/edit', authMiddleware, async (req, res) => {
     try {
         const { id } = req.body;
         delete req.body.id; 
@@ -79,7 +79,7 @@ router.post('/edit', async (req, res) => {
     }
 });
 
-router.post('/edit/isDone', async (req, res) => {
+router.post('/edit/isDone', authMiddleware, async (req, res) => {
     try {
         const task = await Task.findOne({ _id: req.body.id });
         task.isDone = !task.isDone;
