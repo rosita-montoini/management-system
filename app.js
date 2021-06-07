@@ -5,7 +5,7 @@ const path = require('path');
 
 const app = express();
 
-// app.use(express.json({ exteded: true }));
+app.use(express.json({ exteded: true }));
 app.use('/auth', require('./routes/auth.routes'));
 app.use('/task', require('./routes/task.routes'));
 
