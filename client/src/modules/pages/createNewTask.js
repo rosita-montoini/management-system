@@ -126,7 +126,7 @@ export const CreateNewTask = ({ handleClose }) => {
                         justifyContent="center"
                         textAlign="center"
                     >
-                        <form>
+                        <form method="POST">
                             <Box className={styles.root}>
                                 <Grid container justify="center">
                                     <Grid item xs={12}>

@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/auth.middleware');
 
 const router = Router();
 
-router.get('/add', authMiddleware, async (req, res) => {
+router.post('/add', authMiddleware, async (req, res) => {
     const {title, description, priority, dueDate} = req.body;
     const task = new Task({
         title,
@@ -64,7 +64,7 @@ router.post('/remove', authMiddleware, async (req, res) => {
     }
 });
 
-router.get('/edit', authMiddleware, async (req, res) => {
+router.post('/edit', authMiddleware, async (req, res) => {
     try {
         const { id } = req.body;
         delete req.body.id; 
