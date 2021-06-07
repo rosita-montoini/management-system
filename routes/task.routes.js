@@ -22,7 +22,6 @@ router.post('/add', authMiddleware, async (req, res) => {
         
         await task.save();
         res.status(200).json({task});
-        res.redirect('https://app-manag-system.herokuapp.com/');
     } catch (err) {
         res.status(500).json({
             message: 'Something went wrong, try again',
@@ -73,7 +72,6 @@ router.post('/edit', authMiddleware, async (req, res) => {
         res.status(200).json({
             message: 'Successfully edited task',
         });
-        res.redirect('https://app-manag-system.herokuapp.com/');
     } catch (err) {
         res.status(500).json({
             message: 'Something went wrong, try again',
