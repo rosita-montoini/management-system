@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/auth.middleware');
 
 const router = Router();
 
-router.post('/add', authMiddleware, async (req, res) => {
+router.get('/add', authMiddleware, async (req, res) => {
     const {title, description, priority, dueDate} = req.body;
     const task = new Task({
         title,
@@ -21,7 +21,6 @@ router.post('/add', authMiddleware, async (req, res) => {
         }
         
         await task.save();
-        res.redirect('/');
         res.status(200).json({task});
     } catch (err) {
         res.status(500).json({
@@ -65,12 +64,11 @@ router.post('/remove', authMiddleware, async (req, res) => {
     }
 });
 
-router.post('/edit', authMiddleware, async (req, res) => {
+router.get('/edit', authMiddleware, async (req, res) => {
     try {
         const { id } = req.body;
         delete req.body.id; 
         await Task.findByIdAndUpdate(id, req.body);
-        res.redirect('/')
         res.status(200).json({
             message: 'Successfully edited task',
         });
