@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useHistory } from 'react';
 import {
     Grid,
     makeStyles,
@@ -10,6 +10,7 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import { useHttp } from '../../hooks/useHttp';
 import { AuthContext } from '../../context/authContext';
+import { useHistory } from 'react-router';
 
 const NUMBERS_REG = /^[1-9]\d*$/;
 
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const CreateUpdateTask = ({ handleClose, taskById }) => {
+    const history = useHistory();
     const styles = useStyles();
     const authContext = useContext(AuthContext);
     const { request } = useHttp();
@@ -57,7 +59,8 @@ export const CreateUpdateTask = ({ handleClose, taskById }) => {
         try {
             await request('/task/edit', 'POST', {id, ...values}, {
                 Authorization: `Bearer ${authContext.token}`
-            }).then(window.location.replace('/'));
+            });
+            history.push('/');
         } catch (err) {}
     };
 

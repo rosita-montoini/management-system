@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, history } from 'react';
 import {
     Grid,
     makeStyles,
@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const CreateNewTask = ({ handleClose }) => {
+    const history = useHistory();
     const styles = useStyles();
     const authContext = useContext(AuthContext);
     const { request } = useHttp();
@@ -57,7 +58,8 @@ export const CreateNewTask = ({ handleClose }) => {
         try {
             await request('/task/add', 'POST', {...values}, {
                 Authorization: `Bearer ${authContext.token}`
-            }).then(window.location.replace('/'));
+            });
+            history.push('/');
         } catch (err) {}
     };
 

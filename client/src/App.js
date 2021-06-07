@@ -4,18 +4,18 @@ import { useAuth } from './hooks/useAuth';
 import { AuthContext } from './context/authContext';
 import { Navbar } from './components/navbar/navbar';
 import { Loader } from '../../components/loader/loader';
-import { useHttp } from './hooks/useHttp';
+//import { useHttp } from './hooks/useHttp';
 import 'materialize-css';
 
 function App() {
   const { token, login, logout, userId } = useAuth();
-  const { loading } = useHttp();
+  //const { loading } = useHttp();
   const isAuth = !!token;
   const routes = useRoutes(isAuth);
 
-  if (loading) {
-    return <Loader/>
-}
+  // if (loading) {
+  //   return <Loader/>
+  // }
   
   return (
     <AuthContext.Provider value={{token, userId, login, logout, isAuth}}>
