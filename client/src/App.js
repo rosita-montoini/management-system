@@ -3,7 +3,7 @@ import { useRoutes } from './routes';
 import { useAuth } from './hooks/useAuth';
 import { AuthContext } from './context/authContext';
 import { Navbar } from './components/navbar/navbar';
-import { Loader } from '../../components/loader/loader';
+//import { Loader } from '../../components/loader/loader';
 //import { useHttp } from './hooks/useHttp';
 import 'materialize-css';
 
