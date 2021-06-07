@@ -21,6 +21,7 @@ router.post('/add', authMiddleware, async (req, res) => {
         }
         
         await task.save();
+        res.redirect('/');
         res.status(200).json({task});
     } catch (err) {
         res.status(500).json({
@@ -69,6 +70,7 @@ router.post('/edit', authMiddleware, async (req, res) => {
         const { id } = req.body;
         delete req.body.id; 
         await Task.findByIdAndUpdate(id, req.body);
+        res.redirect('/')
         res.status(200).json({
             message: 'Successfully edited task',
         });

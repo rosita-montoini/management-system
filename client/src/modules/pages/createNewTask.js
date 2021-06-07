@@ -10,7 +10,6 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import { useHttp } from '../../hooks/useHttp';
 import { AuthContext } from '../../context/authContext';
-import { useHistory } from 'react-router-dom';
 
 const NUMBERS_REG = /^[1-9]\d*$/;
 
@@ -47,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const CreateNewTask = ({ handleClose }) => {
-    const history = useHistory();
     const styles = useStyles();
     const authContext = useContext(AuthContext);
     const { request } = useHttp();
@@ -59,8 +57,7 @@ export const CreateNewTask = ({ handleClose }) => {
         try {
             await request('/task/add', 'POST', {...values}, {
                 Authorization: `Bearer ${authContext.token}`
-            });
-            history.push('/');
+            }).then(window.location.replace('/'));
         } catch (err) {}
     };
 
