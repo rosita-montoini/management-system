@@ -1,5 +1,5 @@
 {
-   "MONGO_URL": "mongodb+srv://rosita:SznTpqXGIijQOTCX@cluster0.kurg0.mongodb.net/myFirstDatabase",
+   "MONGO_URL": "mongodb+srv://rosita:SznTpqXGIijQOTCX@cluster0.kurg0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
    "JWT_SECRET": "Menagement system",
    "HOST_URL": "http://localhost:3000"
 }
