@@ -1,6 +1,6 @@
 {
    "MONGO_BD": "mongodb+srv://rosita:Y2EFX-@PNG2zbjf@cluster0.kurg0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
    "JWT_SECRET": "Menagement system",
-   "HOST_URL": "http://localhost:3000"
+   "HOST_URL": "https://app-management-system.herokuapp.com/"
 }
 
