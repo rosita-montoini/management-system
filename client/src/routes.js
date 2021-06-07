@@ -5,15 +5,15 @@ import {TaskDetailsPage} from './modules/pages/taskDetailsPage';
 import {Authenticated} from './modules/pages/authPage';
 
 export const useRoutes = isAuthenticated => {
-    let {path} = useRouteMatch();
+    // let {path} = useRouteMatch();
     
     if (isAuthenticated) {
         return (
             <Router>
                 <Switch>
-                    <Route path={`${path}task`} component={HomePage} exact />
-                    <Route path={`${path}task/:id`} component={TaskDetailsPage} exact />
-                    <Redirect to={`${path}task`} />
+                    <Route path="/task" component={HomePage} exact />
+                    <Route path="/task/:id" component={TaskDetailsPage} exact />
+                    <Redirect to="/task" />
                 </Switch>
             </Router>
         );
@@ -22,8 +22,8 @@ export const useRoutes = isAuthenticated => {
     return (
         <Router>
             <Switch>
-                <Route path={`${path}`} component={Authenticated} exact />
-                <Redirect to={`${path}`} />
+                <Route path="/" component={Authenticated} exact />
+                <Redirect to="/" />
             </Switch>
         </Router>
     );
