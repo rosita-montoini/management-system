@@ -22,7 +22,6 @@ router.post('/add', authMiddleware, async (req, res) => {
         
         await task.save();
         res.status(200).json({task});
-        res.redirect('/');
     } catch (err) {
         res.status(500).json({
             message: 'Something went wrong, try again',
@@ -58,7 +57,6 @@ router.post('/remove', authMiddleware, async (req, res) => {
         res.status(200).json({
             message: 'Successfully deleted one task',
         });
-        res.redirect('/');
     } catch (err) {
         res.status(500).json({
             message: 'Something went wrong, try again',
@@ -74,7 +72,6 @@ router.post('/edit', authMiddleware, async (req, res) => {
         res.status(200).json({
             message: 'Successfully edited task',
         });
-        res.redirect('/');
     } catch (err) {
         res.status(500).json({
             message: 'Something went wrong, try again',
@@ -90,7 +87,6 @@ router.post('/edit/isDone', authMiddleware, async (req, res) => {
         res.status(200).json({
             message: 'Successfully edited task',
         });
-        res.redirect('/');
     } catch (err) {
         res.status(500).json({
             message: 'Something went wrong, try again',
