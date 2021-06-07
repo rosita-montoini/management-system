@@ -22,7 +22,7 @@ const port = process.env.PORT || serverPort;
 
 async function start() {
     try {
-        await mongoose.connect(config.get('MONGO_URL'), {
+        await mongoose.connect(config.get('MONGO_BD'), {
             useNewUrlParser: true,
             useCreateIndex: true,
             useUnifiedTopology: true
