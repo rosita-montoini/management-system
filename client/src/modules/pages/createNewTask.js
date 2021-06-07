@@ -57,7 +57,7 @@ export const CreateNewTask = ({ handleClose }) => {
         try {
             await request('/task/add', 'POST', {...values}, {
                 Authorization: `Bearer ${authContext.token}`
-            });
+            }).then(window.location.replace('/'));
         } catch (err) {}
     };
 

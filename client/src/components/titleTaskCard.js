@@ -58,7 +58,7 @@ export const TitleTaskCard = ({ task }) => {
         try {
             await request('/task/edit/isDone', 'POST', {id}, {
                 Authorization: `Bearer ${token}`
-            }).then(window.location.replace('/task'));
+            }).then(window.location.replace('/'));
         } catch (err) {}
     }, [token, request]);
 

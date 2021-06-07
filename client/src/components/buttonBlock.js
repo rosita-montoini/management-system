@@ -55,7 +55,7 @@ export const ButtonBlock = ({ taskById }) => {
         try {
             await request('/task/remove', 'POST', {id}, {
                 Authorization: `Bearer ${authContext.token}`
-            }).then(window.location.replace('/task'));
+            }).then(window.location.replace('/'));
         } catch (err) {}
     };
 
