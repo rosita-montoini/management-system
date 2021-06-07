@@ -1,4 +1,3 @@
-const config = require('config');
 
 module.exports = email => {
     return {
@@ -9,7 +8,7 @@ module.exports = email => {
             <h1>Wellcome to Management System Application</h1>
             <p>You have successfully created your account with email - ${email}</p>
             <hr />
-            <a href="${config.get('HOST_URL')}">Management System</a>
+            <a href="https://app-management-system.herokuapp.com/">Management System</a>
         `
     }
 };

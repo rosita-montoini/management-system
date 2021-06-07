@@ -40,6 +40,11 @@ const useStyles = makeStyles(theme => ({
     btnAdd: {
         marginRight: '10px',
     },
+    select: {
+        '& .MuiOutlinedInput-input': {
+            padding: '8.5px'
+        }
+    }
 }));
 
 export const HomePage = () => {
@@ -120,6 +125,7 @@ export const HomePage = () => {
                                     style={{width: 120}}
                                     onChange={handleChange}
                                     onSelect={handleChange}
+                                    className={styles.select}
                                 >
                                     {options.map((option) => (
                                         <MenuItem key={option} value={option}>
