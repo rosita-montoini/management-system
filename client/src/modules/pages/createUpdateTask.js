@@ -57,7 +57,7 @@ export const CreateUpdateTask = ({ handleClose, taskById }) => {
         try {
             await request('/task/edit', 'POST', {id, ...values}, {
                 Authorization: `Bearer ${authContext.token}`
-            }).then(window.location.assign('https://app-manag-system.herokuapp.com'));
+            }).then(window.history.pushState({}, document.title, "/"));
         } catch (err) {}
     };
 
