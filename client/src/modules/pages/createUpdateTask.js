@@ -57,7 +57,7 @@ export const CreateUpdateTask = ({ handleClose, taskById }) => {
         try {
             await request('/task/edit', 'POST', {id, ...values}, {
                 Authorization: `Bearer ${token}`
-            }).then(window.history.pushState({}, document.title, "/"));
+            }).then(window.history.pushState({}, document.title, "/task/"));
         } catch (err) {}
     };
 

@@ -57,7 +57,7 @@ export const CreateNewTask = ({ handleClose }) => {
         try {
             await request('/task/add', 'POST', {...values}, {
                 Authorization: `Bearer ${token}`
-            }).then(window.history.pushState({}, document.title, "/"));
+            }).then(window.history.pushState({}, document.title, "/task/"));
         } catch (err) {}
     };
 

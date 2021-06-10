@@ -64,7 +64,7 @@ export const HomePage = () => {
             const data = await request('/task', 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
-            setTasks(data);
+            setTasks(data).then(window.history.pushState({}, document.title, "/task/"));
         } catch (err) {}
     }, [token, request]);
 
