@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 export const ButtonBlock = ({ taskById }) => {
     const styles = useStyles();
-    const authContext = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
     const { request } = useHttp();
     const id = taskById._id;
     const [showModal, setShowModal] = useState(false);
@@ -51,10 +51,10 @@ export const ButtonBlock = ({ taskById }) => {
         );
       }
 
-    const remofeTaskById = async () => {
+    const removeTaskById = async () => {
         try {
             await request('/task/remove', 'POST', {id}, {
-                Authorization: `Bearer ${authContext.token}`
+                Authorization: `Bearer ${token}`
             }).then(window.location.replace('/'));
         } catch (err) {}
     };
@@ -90,7 +90,7 @@ export const ButtonBlock = ({ taskById }) => {
                         <Button autoFocus onClick={handleCloseDialog} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={remofeTaskById} color="primary">
+                        <Button onClick={removeTaskById} color="primary">
                             Delete
                         </Button>
                     </DialogActions>        

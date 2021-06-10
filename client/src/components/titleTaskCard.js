@@ -52,18 +52,18 @@ export const TitleTaskCard = ({ task }) => {
             });
             setTaskById(data);
         } catch (err) {}
-    }, [token, request]);
+    }, [token, request, id]);
 
-    const markTaskAsDone = useCallback(async () => {
+    const markTaskAsDone = async () => {
         try {
             await request('/task/edit/isDone', 'POST', {id}, {
                 Authorization: `Bearer ${token}`
             }).then(window.location.replace('/'));
         } catch (err) {}
-    }, [token, request]);
+    };
 
     useEffect(() => {
-       getTaskById();
+      return getTaskById();
     }, [getTaskById]);
 
     const handleOpen = () => {

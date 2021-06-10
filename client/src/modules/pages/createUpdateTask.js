@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
     Grid,
     makeStyles,
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const CreateUpdateTask = ({ handleClose, taskById }) => {
     const styles = useStyles();
-    const authContext = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
     const { request } = useHttp();
     const id = taskById._id;
     const [errors, setErrors] = useState([]);
@@ -56,10 +56,15 @@ export const CreateUpdateTask = ({ handleClose, taskById }) => {
     const editTaskById = async () => {
         try {
             await request('/task/edit', 'POST', {id, ...values}, {
-                Authorization: `Bearer ${authContext.token}`
-            }).then(window.history.pushState({}, document.title, "/"));
+                Authorization: `Bearer ${token}`
+            })
+            // .then(window.history.pushState({}, document.title, "/"));
         } catch (err) {}
     };
+
+    useEffect(() => {
+        return editTaskById();
+    }, []);
 
     const handleChange = ({target: { name, value }}) => {
         setValues({
