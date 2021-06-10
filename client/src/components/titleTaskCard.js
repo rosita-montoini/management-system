@@ -63,7 +63,7 @@ export const TitleTaskCard = ({ task }) => {
     };
 
     useEffect(() => {
-      return getTaskById();
+      getTaskById();
     }, [getTaskById]);
 
     const handleOpen = () => {

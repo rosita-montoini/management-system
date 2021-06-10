@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     Grid,
     makeStyles,
@@ -57,14 +57,9 @@ export const CreateNewTask = ({ handleClose }) => {
         try {
             await request('/task/add', 'POST', {...values}, {
                 Authorization: `Bearer ${token}`
-            })
-            // .then(window.history.pushState({}, document.title, "/"));
+            }).then(window.history.pushState({}, document.title, "/"));
         } catch (err) {}
     };
-
-    useEffect(() => {
-        return taskHandler();
-    }, []);
 
     const handleChange = ({target: { name, value }}) => {
         setValues({

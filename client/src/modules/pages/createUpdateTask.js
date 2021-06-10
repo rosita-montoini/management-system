@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     Grid,
     makeStyles,
@@ -57,14 +57,9 @@ export const CreateUpdateTask = ({ handleClose, taskById }) => {
         try {
             await request('/task/edit', 'POST', {id, ...values}, {
                 Authorization: `Bearer ${token}`
-            })
-            // .then(window.history.pushState({}, document.title, "/"));
+            }).then(window.history.pushState({}, document.title, "/"));
         } catch (err) {}
     };
-
-    useEffect(() => {
-        return editTaskById();
-    }, []);
 
     const handleChange = ({target: { name, value }}) => {
         setValues({
