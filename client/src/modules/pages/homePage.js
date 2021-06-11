@@ -61,10 +61,6 @@ export const HomePage = () => {
     const sortPriorityTasks = lodash.orderBy(tasks, ['priority'], ['asc']);
     const sortDueDateTasks = lodash.orderBy(tasks, ['dueDate'], ['asc']);
 
-    if (!ready) {
-        return <Loader/>
-    }
-
     const getTasks = useCallback(async () => {
         try {
             const data = await request('/task', 'GET', null, {
@@ -77,6 +73,10 @@ export const HomePage = () => {
     useEffect(() => {
         getTasks();
     }, [getTasks]);
+
+    if (!ready) {
+        return <Loader/>
+    }
 
     const handleChange = (event) => {
         setSortOption(event.target.value);
