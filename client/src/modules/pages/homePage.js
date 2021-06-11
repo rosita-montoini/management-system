@@ -76,10 +76,6 @@ export const HomePage = () => {
         setSortOption(event.target.value);
     };
 
-    if (window.location.href === 'https://app-manag-system.herokuapp.com/task') {
-        return window.history.pushState({}, document.title, "/");
-    }
-
     if (loading) {
         return <Loader/>
     }
