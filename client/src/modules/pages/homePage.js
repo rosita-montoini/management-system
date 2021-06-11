@@ -19,6 +19,7 @@ import { useHttp } from '../../hooks/useHttp';
 import { AuthContext } from '../../context/authContext';
 import { Loader } from '../../components/loader/loader';
 import { TitleTaskCard } from '../../components/titleTaskCard';
+import { useAuth } from '../../hooks/useAuth';
 import lodash from 'lodash';
 
 const options = ['Active', 'Completed', 'Due Date', 'Priority'];
@@ -49,8 +50,9 @@ const useStyles = makeStyles(theme => ({
 
 export const HomePage = () => {
     const styles = useStyles();
+    const { ready } = useAuth();
     const { token } = useContext(AuthContext);
-    const { request, loading } = useHttp();
+    const { request } = useHttp();
     const [tasks, setTasks] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [sortOption, setSortOption] = useState('Active');
@@ -58,6 +60,10 @@ export const HomePage = () => {
     const sortCompletedTasks = lodash.orderBy(tasks, ['isDone'], ['desc']);
     const sortPriorityTasks = lodash.orderBy(tasks, ['priority'], ['asc']);
     const sortDueDateTasks = lodash.orderBy(tasks, ['dueDate'], ['asc']);
+
+    if (!ready) {
+        return <Loader/>
+    }
 
     const getTasks = useCallback(async () => {
         try {
@@ -75,10 +81,6 @@ export const HomePage = () => {
     const handleChange = (event) => {
         setSortOption(event.target.value);
     };
-
-    if (loading) {
-        return <Loader/>
-    }
 
     const handleOpen = () => {
         setShowModal(true);
