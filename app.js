@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-const serverPort = 5000;
+const serverPort = 8080;
 const port = process.env.PORT || serverPort;
 
 async function start() {

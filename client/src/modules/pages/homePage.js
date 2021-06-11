@@ -69,7 +69,7 @@ export const HomePage = () => {
     }, [token, request]);
 
     useEffect(() => {
-        return getTasks();
+        getTasks();
     }, [getTasks]);
 
     const handleChange = (event) => {
