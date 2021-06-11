@@ -15,7 +15,7 @@ export const useRoutes = isAuthenticated => {
                     {isAuthenticated ? 
                         <Redirect to="/task"/>
                         :
-                        <Redirect to="/"/>
+                        <Redirect from="/task" to="/"/>
                     }
                 </Switch>
             </Router>
