@@ -19,7 +19,6 @@ import { useHttp } from '../../hooks/useHttp';
 import { AuthContext } from '../../context/authContext';
 import { Loader } from '../../components/loader/loader';
 import { TitleTaskCard } from '../../components/titleTaskCard';
-import { useAuth } from '../../hooks/useAuth';
 import lodash from 'lodash';
 
 const options = ['Active', 'Completed', 'Due Date', 'Priority'];
@@ -50,9 +49,8 @@ const useStyles = makeStyles(theme => ({
 
 export const HomePage = () => {
     const styles = useStyles();
-    const { ready } = useAuth();
     const { token } = useContext(AuthContext);
-    const { request } = useHttp();
+    const { request, loading } = useHttp();
     const [tasks, setTasks] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [sortOption, setSortOption] = useState('Active');
@@ -74,13 +72,17 @@ export const HomePage = () => {
         getTasks();
     }, [getTasks]);
 
-    if (!ready) {
-        return <Loader/>
-    }
-
     const handleChange = (event) => {
         setSortOption(event.target.value);
     };
+
+    if (window.location.href === 'https://app-manag-system.herokuapp.com/task') {
+        return window.history.pushState({}, document.title, "/");
+    }
+
+    if (loading) {
+        return <Loader/>
+    }
 
     const handleOpen = () => {
         setShowModal(true);
