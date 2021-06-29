@@ -9,7 +9,7 @@ ReactDOM.render(
   <Router>
     <Switch>
       <Route path='/' component={App}/>
-      <Redirect to="/task"/>
+      <Redirect from="/task" to="/"/>
     </Switch>
   </Router>,
   document.getElementById('root')
