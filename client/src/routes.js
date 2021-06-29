@@ -10,9 +10,9 @@ export const useRoutes = isAuthenticated => {
         return (
             <Router>
                 <Switch>
-                    <Route path="/" component={HomePage} exact />
+                    <Route path="/task" component={HomePage} exact />
                     <Route path="/sometask" component={TaskDetailsPage} exact />
-                    <Redirect to="/"/>
+                    <Redirect to="/task"/>
                 </Switch>
             </Router>
         );
@@ -21,8 +21,8 @@ export const useRoutes = isAuthenticated => {
     return (
         <Router>
             <Switch>
-                <Route path="/" component={Authenticated} exact />
-                <Redirect to="/"/>
+                <Route path="/auth" component={Authenticated} exact />
+                <Redirect to="/auth"/>
             </Switch>
         </Router>
     );
