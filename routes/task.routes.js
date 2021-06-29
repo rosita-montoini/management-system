@@ -32,7 +32,7 @@ router.post('/add', authMiddleware, async (req, res) => {
 router.get('/', authMiddleware, async (req, res) => {
     try {
         const tasks = await Task.find({ ownerId: req.user.userId});
-        res.json(tasks).redirect('/');
+        res.json(tasks).redirect('/task');
     } catch (err) {
         res.status(500).json({
             message: 'Something went wrong, try again',
