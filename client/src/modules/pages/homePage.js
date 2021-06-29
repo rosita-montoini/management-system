@@ -65,7 +65,7 @@ export const HomePage = () => {
                 Authorization: `Bearer ${token}`
             });
             setTasks(data);
-            if (window.location === "/task") {
+            if (window.location.reload === true) {
                 window.location.replace('/');
             }
         } catch (err) {}
