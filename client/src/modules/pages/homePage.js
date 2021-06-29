@@ -19,7 +19,7 @@ import { useHttp } from '../../hooks/useHttp';
 import { AuthContext } from '../../context/authContext';
 import { Loader } from '../../components/loader/loader';
 import { TitleTaskCard } from '../../components/titleTaskCard';
-import lodash from 'lodash';
+import lodash, { truncate } from 'lodash';
 
 const options = ['Active', 'Completed', 'Due Date', 'Priority'];
 
@@ -65,6 +65,9 @@ export const HomePage = () => {
                 Authorization: `Bearer ${token}`
             });
             setTasks(data);
+            if (window.location === "/task") {
+                window.location.replace('/');
+            }
         } catch (err) {}
     }, [token, request]);
 
