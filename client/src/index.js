@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <Router>
       <Route path="/" component={App} exact />
-      <Redirect to="/task" />
+      <Redirect to="/" />
   </Router>,
   document.getElementById('root')
 );
